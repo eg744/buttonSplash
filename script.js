@@ -11,8 +11,16 @@ function mouseSelectedPosition(event, element) {
 }
 
 splash.addEventListener('click', (event) => {
+   // Remove before adding again instead of listener
+   splash.classList.remove('waterdrop');
+
    let x = event.offsetX;
    let y = event.offsetY;
-   mouseSelectedPosition(event, splash);
-   splash.classList.add()
+   // mouseSelectedPosition(event, splash);
+   mouseSelectedPosition(event, event.currentTarget);
+
+   splash.classList.add('waterdrop');
+   // splash.addEventListener('animationend', () => {
+   //    splash.classList.remove('waterdrop');
+   // });
 });
