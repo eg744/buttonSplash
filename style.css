@@ -1,0 +1,62 @@
+body {
+   min-height: 100vh;
+   display: grid;
+   place-items: center;
+}
+.splash-button {
+   /* or inline grid */
+   display: inline-flex;
+   place-items: center;
+   position: relative;
+   /* New stacking context (z-index) */
+   isolation: isolate;
+   appearance: none;
+   font-size: 2rem;
+   cursor: pointer;
+   padding: 1em 2em;
+   text-transform: uppercase;
+   background-color: transparent;
+   color: hsl(200, 100%, 45%);
+   border: 5px solid currentColor;
+   border-radius: 1em;
+}
+
+.splash-button::before {
+   content: '';
+   position: absolute;
+   top: var(--y);
+   left: var(--x);
+   /* Disappears after transform ends */
+   transform: translate(-50%, -50%) scale(0);
+   transition: transform 500ms;
+   z-index: -1;
+   /* splash width */
+   width: 120%;
+   /* Circular ripple */
+   border-radius: 50%;
+   display: block;
+   aspect-ratio: 1 / 1;
+   background: green;
+   opacity: 0.3;
+}
+
+.splash-button:active::before {
+   /* background: pink; */
+   transform: translate(-50%, -50%) scale(1);
+}
+
+.drop::before {
+   animation: drop 500ms;
+}
+
+@keyframes drop {
+   100% {
+      transform: translate(-50%, -50%) scale(1);
+   }
+   /* 50% {
+
+   }
+   0% {
+
+   } */
+}
